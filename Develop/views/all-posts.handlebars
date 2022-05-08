@@ -1,19 +1,19 @@
-{{#each posts as |post|}}
 <div class="posts list-group">
+    {{#each posts as |post|}}
     <div class="card">
         <div class="card-header flex-row justify-space-between">
-            <h2><a href="./{{post.id}}">{{post.title}}</a></h2>
-            <div class="flex-row">
+            <h2><a href="/post/{{post.id}}">{{post.title}}</a></h2>
+            <div class="flex-row ">
                 <p>Posted By: {{post.User.username}}</p>
             </div>
             <div class="flex-row">
                 <p>{{format_date post.createdAt}}</p>
             </div>
         </div>
-        <div class="card-body ">
+        <div class="card-body flex-wrap">
             <p class="card-body">{{post.body}}</p>
         </div>
 
     </div>
+    {{/each}}
 </div>
-{{/each}}

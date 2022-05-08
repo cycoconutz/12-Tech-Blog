@@ -13,16 +13,20 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
-    const postData = await Post.findAll({
-      include: [{ all: true, nested: true }],
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.status(200).json(postData);
-  } catch (err) {
+    const postData = await Post.findByPk(req.params.id);
+    if (postData) {
+      const post = postData.get({ plain: true });
+
+      res.render('single-post', {
+        layout: 'dashboard',
+        post,
+      });
+      res.status(200).json(postData);
+    }
+  }
+  catch (err) {
     res.status(500).json(err);
   }
 });
@@ -64,9 +68,9 @@ router.delete('/:id', withAuth, async (req, res) => {
       },
     });
     if (!affectedRows) {
-      res.status(404).json({ message: 'No post found with that id' }).end();
+      res.status(404).json({ message: 'No post found with that id!' }).end();
     }
-    res.status(200).json({ message: 'Post Deleted' }).end();
+    res.status(200).json({ message: 'Post deleted!' }).end();
   } catch (err) {
     res.status(500).json(err);
   }
