@@ -59,11 +59,11 @@ p {
 }
 
 input {
-    width: 100%;
-    border: 1px solid #ccc;
-    background: #FFF;
-    margin: 0 0 5px;
-    padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
 }
 
 .card-header h2 {
@@ -182,6 +182,7 @@ input {
 
 .card-body {
   padding: 1%;
+  flex-wrap: wrap;
 }
 
 /* FORM */
