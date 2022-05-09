@@ -5,7 +5,7 @@
             <h2>{{title}}</h2>
             <div class="flex-row">
                 <p>Posted by {{User.username}} </p>
-                <p> on {{createdAt}}</p>
+                <p>&nbsp on {{createdAt}}</p>
             </div>
         </div>
         <div class="card-body">
@@ -20,7 +20,7 @@
             <p>{{comment.body}}</p>
             <div class="flex-row">
                 <p>-{{comment.User.username}} </p>
-                <p> on {{format_date comment.createdAt}}</p>
+                <p>&nbsp on {{format_date comment.createdAt}}</p>
             </div>
 
         </div>
@@ -30,4 +30,4 @@
 </div>
 
 </div>
-<script src="/js/comment.js"></script>
+<script src="/js/edit.js"></script>
