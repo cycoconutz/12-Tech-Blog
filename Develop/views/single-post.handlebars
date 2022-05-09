@@ -21,7 +21,7 @@
             </div>
         </form>
     </div>
-    {{#if comments.[0]}}
+    {{#if comments}}
     {{#each comments as |comment|}}
     <div class="card">
         <div class="card-header"></div>
@@ -29,7 +29,7 @@
             <p>{{comment.body}}</p>
             <div class="flex-row">
                 <p>-{{comment.User.username}} </p>
-                <p>&nbsponon {{format_date comment.createdAt}}</p>
+                <p> &nbspon {{format_date comment.createdAt}}</p>
             </div>
 
         </div>
