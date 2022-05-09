@@ -1,42 +1,41 @@
 <div class="posts list-group">
 
-    <div class="card">
+    <div class="post card">
         <div class="card-header flex-row justify-space-between">
             <h2>{{title}}</h2>
             <div class="flex-row">
                 <p>Posted by {{User.username}} </p>
-                <p>&nbsp on {{format_date createdAt}} </p>
+                <p>&nbspon {{format_date createdAt}}</p>
             </div>
         </div>
         <div class="card-body">
             <p>{{body}}</p>
         </div>
     </div>
-    <div class="card" name="post-id">
-        <div class="card-header flex-row justify-center">
-            <h2>Leave a comment</h2>
-        </div>
-        <form id="new-post-form" class="card-body">
-            <textarea name="comment-body" id="comment-body" class="form-input"></textarea>
-            <button type="submit" class="btn">Submit</button>
+    <div class="post card">
+        <form class="form" id="new-comment-form">
+            <div>
+                <label for="comment-body">Comment</label>
+                <textarea class="form-input" type="text" id="comment-body" name="comment-body"></textarea>
+                <button type="submit" class="btn">Add Comment</button>
+            </div>
         </form>
     </div>
-</div>
-{{#if comments.[0]}}
-{{#each comments as |comment|}}
-<div class="card">
-    <div class="card-header"></div>
-    <div class="card-body">
-        <p>{{comment.body}}</p>
-        <div class="flex-row">
-            <p>-{{comment.User.username}} </p>
-            <p>&nbsp on {{format_date comment.createdAt}}</p>
-        </div>
+    {{#if comments.[0]}}
+    {{#each comments as |comment|}}
+    <div class="card">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <p>{{comment.body}}</p>
+            <div class="flex-row">
+                <p>-{{comment.User.username}} </p>
+                <p>&nbsponon {{format_date comment.createdAt}}</p>
+            </div>
 
+        </div>
     </div>
-</div>
-{{/each}}
-{{/if}}
+    {{/each}}
+    {{/if}}
 </div>
 
 </div>

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../models/');
+const { Post, User, Comment } = require('../models/');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
@@ -7,7 +7,7 @@ router.get('/', withAuth, async (req, res) => {
     const postData = await Post.findAll({
       include: [{ all: true, nested: true }],
       where: {
-        userId: req.session.userId,
+        user_id: req.session.userId,
       },
     });
     if (postData) {
@@ -18,19 +18,18 @@ router.get('/', withAuth, async (req, res) => {
         posts,
       });
     }
+
   } catch (err) {
     res.redirect('login');
   }
 });
 
-//New Post
 router.get('/new', withAuth, (req, res) => {
   res.render('new-post', {
     layout: 'dashboard',
   });
 });
 
-//Edit Post
 router.get('/edit/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
@@ -39,7 +38,6 @@ router.get('/edit/:id', withAuth, async (req, res) => {
       const post = postData.get({ plain: true });
 
       res.render('edit-post', {
-        layout: 'dashboard',
         post,
       });
     } else {

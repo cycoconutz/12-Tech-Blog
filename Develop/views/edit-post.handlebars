@@ -1,33 +1,17 @@
-<div class="posts list-group">
-
-    <div class="card">
-        <div class="card-header flex-row justify-space-between">
-            <h2>{{title}}</h2>
-            <div class="flex-row">
-                <p>Posted by {{User.username}} </p>
-                <p>&nbsp on {{createdAt}}</p>
+<div class="post card">
+    <form class="form" id='edit-post-form'>
+        <div>
+            <label for="post-title">Title</label>
+            <input class="form-input" type="text" id="post-title" name="post-title" value="{{post.title}}">
+            <label for="post-body">Content</label>
+            <textarea class="form-input" type="text" id="post-body" name="post-body">{{post.body}}</textarea>
+            <div class="hide">
+                <input class="form-input" type="text" id="post-id" name="post-id" value="{{post.id}}" readonly="true">
             </div>
+            <button type="submit" class="btn">Update Post</button>
+            <button type="click" class="btn" id="delete-btn">Delete Post</button>
         </div>
-        <div class="card-body">
-            <p>{{body}}</p>
-        </div>
-    </div>
-    {{#if comments.[0]}}
-    {{#each comments as |comment|}}
-    <div class="card">
-        <div class="card-header"></div>
-        <div class="card-body">
-            <p>{{comment.body}}</p>
-            <div class="flex-row">
-                <p>-{{comment.User.username}} </p>
-                <p>&nbsp on {{format_date comment.createdAt}}</p>
-            </div>
-
-        </div>
-    </div>
-    {{/each}}
-    {{/if}}
+    </form>
 </div>
 
-</div>
 <script src="/js/edit.js"></script>
