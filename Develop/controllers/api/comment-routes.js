@@ -2,58 +2,31 @@ const router = require('express').Router();
 const { Comment } = require('../../models/');
 const withAuth = require('../../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const commentData = await Comment.findAll({
-      include: [{ all: true, nested: true }],
+      include: [User],
     });
-    res.status(200).json(commentData);
+    // serialize the data
+    const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+    console.log(comments);
+
+    res.render('single-post', { comments, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 router.post('/', withAuth, async (req, res) => {
+  const body = req.body;
+
   try {
     const newComment = await Comment.create({
-      ...req.body,
-      user_id: req.session.userId,
+      ...body,
+      userId: req.session.userId,
     });
     res.json(newComment);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.put('/:id', withAuth, async (req, res) => {
-  try {
-    const [affectedRows] = await Comment.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (affectedRows > 0) {
-      res.json({ message: "comment updated" });
-      res.status(200).end();
-    } else {
-      res.status(404).end();
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.delete('/:id', withAuth, async (req, res) => {
-  try {
-    const affectedRows = Comment.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (!affectedRows) {
-      res.status(404).json({ message: 'No comment found with that id!' }).end();
-    }
-    res.status(200).json({ message: `Comment id ${req.params.id} deleted!` }).end();
   } catch (err) {
     res.status(500).json(err);
   }

@@ -2,6 +2,7 @@ const commentFormHandler = async function (event) {
   event.preventDefault();
   const currentUrl = window.location.href;
   const postId = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+
   const body = document.querySelector('textarea[name="comment-body"]').value;
 
   if (body) {

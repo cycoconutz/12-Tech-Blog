@@ -12,6 +12,21 @@
             <p>{{body}}</p>
         </div>
     </div>
+    {{#if comments.[0]}}
+    {{#each comments as |comment|}}
+    <div class="card">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <p>{{comment.body}}</p>
+            <div class="flex-row">
+                <p>-{{comment.User.username}} </p>
+                <p>&nbsponon {{format_date comment.createdAt}}</p>
+            </div>
+
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
     <div class="post card">
         <form class="form" id="new-comment-form">
             <div>
@@ -21,21 +36,7 @@
             </div>
         </form>
     </div>
-    {{#if comments}}
-    {{#each comments as |comment|}}
-    <div class="card">
-        <div class="card-header"></div>
-        <div class="card-body">
-            <p>{{comment.body}}</p>
-            <div class="flex-row">
-                <p>-{{comment.User.username}} </p>
-                <p> &nbspon {{format_date comment.createdAt}}</p>
-            </div>
 
-        </div>
-    </div>
-    {{/each}}
-    {{/if}}
 </div>
 
 </div>

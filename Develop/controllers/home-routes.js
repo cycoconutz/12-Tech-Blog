@@ -8,9 +8,7 @@ router.get('/', async (req, res) => {
       include: [{ all: true, nested: true }]
     });
     const posts = postData.map((post) => post.get({ plain: true }));
-    const loginStatus = req.session.loggedIn;
     res.render('all-posts', {
-      loginStatus,
       posts,
     });
   } catch (err) {
@@ -44,12 +42,10 @@ router.get('/post/:id', async (req, res) => {
       const postData = await Post.findByPk(req.params.id, {
         include: [{ all: true, nested: true }],
       });
-      const loginStatus = req.session.loggedIn;
       if (postData) {
         const post = postData.get({ plain: true });
         res.render('single-post', {
           ...post,
-          loginStatus
         })
       } else {
         res.status(404).end();
