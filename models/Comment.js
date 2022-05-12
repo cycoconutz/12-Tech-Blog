@@ -22,14 +22,10 @@ Comment.init(
         key: 'id'
       },
     },
-    createdAt: {
-      field: 'created_at',
-      type: Sequelize.DATE,
-    },
   },
   {
     sequelize,
-    timestamps: true,
+    timestamps: false,
     freezeTableName: true,
     underscores: true,
     modelName: 'comment'
