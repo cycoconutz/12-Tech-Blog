@@ -24,10 +24,6 @@ Post.init(
         key: 'id',
       },
     },
-    createdAt: {
-      field: 'created_at',
-      type: Sequelize.DATE,
-    },
   },
   {
     sequelize,
