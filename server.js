@@ -11,7 +11,7 @@ const sequelize = require('./config/config');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
-  secret: process.env.SECRET,
+  secret: "all around me are familiar faces, worn out faces, worn out places",
   cookie: {
     maxAge: 1000000
   }, resave: false,
