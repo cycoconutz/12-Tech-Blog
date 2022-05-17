@@ -2,28 +2,21 @@ const { Comment } = require('../models');
 
 const commentData = [
   {
-    message: 'I really like Quacker too!',
-    likes: 0,
+    body: 'I really like Quacker too!',
     post_id: 1,
-    user_id: 3,
   },
   {
-    message: 'I did not know that!',
-    likes: 0,
+    body: 'I did not know that!',
     post_id: 3,
     user_id: 1,
   },
   {
-    message: "That's neat!",
-    likes: 0,
+    body: "That's neat!",
     post_id: 4,
-    user_id: 3,
   },
   {
-    message: 'Barbie has a full name?!',
-    likes: 0,
+    body: 'Barbie has a full name?!',
     post_id: 5,
-    user_id: 2,
   },
 ];
 
